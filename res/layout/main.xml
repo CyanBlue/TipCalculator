@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android" 
+	android:scrollbars="vertical" 
+	android:layout_height="fill_parent" 
+	android:layout_width="fill_parent" >
+	
+	<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+		android:layout_width="fill_parent"
+		android:layout_height="fill_parent"
+		android:stretchColumns="2">
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:layout_span="2"
+				android:text="Title if needed"
+				android:textSize="18sp"
+				android:gravity="center"
+				android:padding="8dip" />
+		</TableRow>
+		
+		<View
+			android:layout_height="2dip"
+			android:background="#FF909090" />
+		
+		<TableRow>
+			<TextView
+				android:layout_column="0"
+				android:text=" "
+				android:padding="5dip" />
+			<TextView
+				android:layout_column="1"
+				android:text="Total : "
+				android:padding="5dip" />
+			<EditText
+				android:layout_width="fill_parent"
+				android:layout_height="34dp" 
+				android:layout_column="2"
+				android:id="@+id/total"
+				android:inputType="number|numberSigned|numberDecimal"
+				android:text="$10.00"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip" />
+			<TextView
+				android:layout_column="3"
+				android:text=" "
+				android:padding="5dip" />
+		</TableRow>
+		
+		<TableRow>
+			<SeekBar
+				android:layout_column="2"
+				android:id="@+id/seekTotal"
+				android:max="100"
+				android:progress="0"
+				android:padding="5dip" />
+		</TableRow>
+		
+		<View
+			android:layout_height="2dip"
+			android:background="#FF909090" />
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:text="Tip Rate : "
+				android:padding="5dip" />
+			<EditText
+				android:layout_width="fill_parent"
+				android:layout_height="34dp" 
+				android:layout_column="2"
+				android:id="@+id/tipRate"
+				android:inputType="number|numberSigned|numberDecimal"
+				android:text="15.00 %"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip" />
+		</TableRow>
+		
+		<TableRow>
+			<SeekBar
+				android:layout_column="2"
+				android:id="@+id/seekTipRate"
+				android:max="100"
+				android:progress="0"
+				android:padding="5dip" />
+		</TableRow>
+		
+		<View
+			android:layout_height="2dip"
+			android:background="#FF909090" />
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:text="Tax Rate : "
+				android:padding="5dip" />
+			<EditText
+				android:layout_width="fill_parent"
+				android:layout_height="34dp" 
+				android:layout_column="2"
+				android:id="@+id/taxRate"
+				android:inputType="number|numberSigned|numberDecimal"
+				android:text="5.00 %"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip" />
+		</TableRow>
+		
+		<TableRow>
+			<SeekBar
+				android:layout_column="2"
+				android:id="@+id/seekTaxRate"
+				android:max="100"
+				android:progress="0"
+				android:padding="5dip" />
+		</TableRow>
+		
+		<View
+			android:layout_height="4dip"
+			android:background="#FF909090" />
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:text="Tip : "
+				android:gravity="right"
+				android:padding="5dip"
+				android:textStyle="italic" />
+			<TextView
+				android:layout_column="2"
+				android:id="@+id/tip"
+				android:text="$ 0.00"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip"
+				android:textStyle="bold" />
+		</TableRow>
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:text="Tax : "
+				android:gravity="right"
+				android:padding="5dip"
+				android:textStyle="italic" />
+			<TextView
+				android:layout_column="2"
+				android:id="@+id/totalTax"
+				android:text="$ 0.00"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip"
+				android:textStyle="bold" />
+		</TableRow>
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:text="Total : "
+				android:gravity="right"
+				android:padding="5dip"
+				android:textStyle="italic" />
+			<TextView
+				android:layout_column="2"
+				android:id="@+id/grandTotal"
+				android:text="$ 0.00"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip"
+				android:textStyle="bold" />
+		</TableRow>
+	</TableLayout>
+</ScrollView>
