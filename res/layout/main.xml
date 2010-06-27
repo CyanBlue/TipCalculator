@@ -9,21 +9,7 @@
 		android:layout_height="fill_parent"
 		android:stretchColumns="2">
 		
-		<TableRow>
-			<TextView
-				android:layout_column="1"
-				android:layout_span="2"
-				android:text="Title if needed"
-				android:textSize="18sp"
-				android:gravity="center"
-				android:padding="8dip" />
-		</TableRow>
-		
-		<View
-			android:layout_height="2dip"
-			android:background="#FF909090" />
-		
-		<TableRow>
+		<TableRow android:layout_marginTop="10dip">
 			<TextView
 				android:layout_column="0"
 				android:text=" "
@@ -54,14 +40,14 @@
 				android:id="@+id/seekTotal"
 				android:max="100"
 				android:progress="0"
-				android:padding="5dip" />
+				android:padding="0dip" />
 		</TableRow>
 		
 		<View
-			android:layout_height="2dip"
+			android:layout_height="0dip"
 			android:background="#FF909090" />
 		
-		<TableRow>
+		<TableRow android:layout_marginTop="10dip">
 			<TextView
 				android:layout_column="1"
 				android:text="Tip Rate : "
@@ -84,14 +70,14 @@
 				android:id="@+id/seekTipRate"
 				android:max="100"
 				android:progress="0"
-				android:padding="5dip" />
+				android:padding="0dip" />
 		</TableRow>
 		
 		<View
-			android:layout_height="2dip"
+			android:layout_height="0dip"
 			android:background="#FF909090" />
 		
-		<TableRow>
+		<TableRow android:layout_marginTop="10dip">
 			<TextView
 				android:layout_column="1"
 				android:text="Tax Rate : "
@@ -114,19 +100,49 @@
 				android:id="@+id/seekTaxRate"
 				android:max="100"
 				android:progress="0"
-				android:padding="5dip" />
+				android:padding="0dip" />
 		</TableRow>
 		
 		<View
-			android:layout_height="4dip"
+			android:layout_height="0dip"
 			android:background="#FF909090" />
 		
+		<TableRow android:layout_marginTop="10dip">
+			<TextView
+				android:layout_column="1"
+				android:text="Split by : "
+				android:padding="5dip" />
+			<EditText
+				android:layout_width="fill_parent"
+				android:layout_height="34dp" 
+				android:layout_column="2"
+				android:id="@+id/splitBy"
+				android:inputType="number|numberSigned"
+				android:text="1"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="5dip" />
+		</TableRow>
+		
 		<TableRow>
+			<SeekBar
+				android:layout_column="2"
+				android:id="@+id/seekSplitBy"
+				android:max="100"
+				android:progress="0"
+				android:paddingBottom="10dip" />
+		</TableRow>
+		
+		<View
+			android:layout_height="2dip"
+			android:background="#FF909090" />
+		
+		<TableRow android:layout_marginTop="10dip">
 			<TextView
 				android:layout_column="1"
 				android:text="Tip : "
 				android:gravity="right"
-				android:padding="5dip"
+				android:padding="3dip"
 				android:textStyle="italic" />
 			<TextView
 				android:layout_column="2"
@@ -134,7 +150,7 @@
 				android:text="$ 0.00"
 				android:gravity="right"
 				android:textSize="14sp"
-				android:padding="5dip"
+				android:padding="3dip"
 				android:textStyle="bold" />
 		</TableRow>
 		
@@ -143,7 +159,7 @@
 				android:layout_column="1"
 				android:text="Tax : "
 				android:gravity="right"
-				android:padding="5dip"
+				android:padding="3dip"
 				android:textStyle="italic" />
 			<TextView
 				android:layout_column="2"
@@ -151,7 +167,7 @@
 				android:text="$ 0.00"
 				android:gravity="right"
 				android:textSize="14sp"
-				android:padding="5dip"
+				android:padding="3dip"
 				android:textStyle="bold" />
 		</TableRow>
 		
@@ -160,7 +176,7 @@
 				android:layout_column="1"
 				android:text="Total : "
 				android:gravity="right"
-				android:padding="5dip"
+				android:padding="3dip"
 				android:textStyle="italic" />
 			<TextView
 				android:layout_column="2"
@@ -168,7 +184,24 @@
 				android:text="$ 0.00"
 				android:gravity="right"
 				android:textSize="14sp"
-				android:padding="5dip"
+				android:padding="3dip"
+				android:textStyle="bold" />
+		</TableRow>
+		
+		<TableRow>
+			<TextView
+				android:layout_column="1"
+				android:text="Per Person : "
+				android:gravity="right"
+				android:padding="3dip"
+				android:textStyle="italic" />
+			<TextView
+				android:layout_column="2"
+				android:id="@+id/totalPerPerson"
+				android:text="$ 0.00"
+				android:gravity="right"
+				android:textSize="14sp"
+				android:padding="3dip"
 				android:textStyle="bold" />
 		</TableRow>
 	</TableLayout>
