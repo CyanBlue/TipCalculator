@@ -11,10 +11,14 @@ public final class R {
     public static final class attr {
     }
     public static final class drawable {
-        public static final int icon=0x7f020000;
+        public static final int ic_tipcalculator_32=0x7f020000;
+        public static final int ic_tipcalculator_48=0x7f020001;
+        public static final int ic_tipcalculator_72=0x7f020002;
+        public static final int icon=0x7f020003;
     }
     public static final class id {
         public static final int grandTotal=0x7f05000a;
+        public static final int label_totalPerPerson=0x7f05000b;
         public static final int seekSplitBy=0x7f050007;
         public static final int seekTaxRate=0x7f050005;
         public static final int seekTipRate=0x7f050003;
@@ -24,7 +28,7 @@ public final class R {
         public static final int tip=0x7f050008;
         public static final int tipRate=0x7f050002;
         public static final int total=0x7f050000;
-        public static final int totalPerPerson=0x7f05000b;
+        public static final int totalPerPerson=0x7f05000c;
         public static final int totalTax=0x7f050009;
     }
     public static final class layout {

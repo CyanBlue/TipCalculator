@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.view.View;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -42,6 +43,7 @@ public class Main extends Activity
 	TextView tip;
 	TextView totalTax;
 	TextView grandTotal;
+	TextView label_totalPerPerson;
 	TextView totalPerPerson;
 	
 	/** Called when the activity is first created. */
@@ -50,6 +52,7 @@ public class Main extends Activity
 	{
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.main);
+		
 		
 		Currency = new DecimalFormat("$ #0.00");
 		
@@ -111,6 +114,7 @@ public class Main extends Activity
 		tip = (TextView) findViewById(R.id.tip);
 		totalTax = (TextView) findViewById(R.id.totalTax);
 		grandTotal = (TextView) findViewById(R.id.grandTotal);
+		label_totalPerPerson = (TextView) findViewById(R.id.label_totalPerPerson);
 		totalPerPerson = (TextView) findViewById(R.id.totalPerPerson);
 		
 		updateTotal();
@@ -179,7 +183,7 @@ public class Main extends Activity
 		float _total;
 		float _tipRate;
 		float _taxRate;
-		float _splitBy;
+		int _splitBy;
 		
 		st1 = "";
 		st1 = total.getText().toString();
@@ -224,7 +228,7 @@ public class Main extends Activity
 		}
 		st4 = st4.replace("person", "");
 		st4 = st4.replace(" ", "");
-		_splitBy = Float.valueOf(st4.trim()).floatValue();
+		_splitBy = Integer.valueOf(st4.trim()).intValue();
 		
 		float _totalTax = _total * _taxRate / 100;
 		float _tip = (_total + _totalTax) * _tipRate / 100;
@@ -234,6 +238,17 @@ public class Main extends Activity
 		tip.setText(Currency.format(_tip));
 		totalTax.setText(Currency.format(_totalTax));
 		grandTotal.setText(Currency.format(_grandTotal));
+		
+		if (_splitBy == 1)
+		{
+			label_totalPerPerson.setVisibility(View.INVISIBLE);
+			totalPerPerson.setVisibility(View.INVISIBLE);
+		}
+		else
+		{
+			label_totalPerPerson.setVisibility(View.VISIBLE);
+			totalPerPerson.setVisibility(View.VISIBLE);
+		}
 		totalPerPerson.setText(Currency.format(_totalPerPerson));
 	}
 	
@@ -243,7 +258,6 @@ public class Main extends Activity
 		public void afterTextChanged(Editable s)
 		{
 			// TODO Auto-generated method stub
-//			validateFields();
 			
 			String st;
 			float f;
