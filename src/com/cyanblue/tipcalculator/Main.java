@@ -4,9 +4,8 @@ import java.text.DecimalFormat;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.View;
+import android.view.View.OnFocusChangeListener;
 import android.widget.EditText;
 import android.widget.SeekBar;
 import android.widget.TextView;
@@ -60,14 +59,13 @@ public class Main extends Activity
 		defaultTotal = 25;
 		
 		total = (EditText) findViewById(R.id.total);
+		total.setId(101);
 		total.setText(Currency.format(defaultTotal));
 		
 		seekTotal = (SeekBar) findViewById(R.id.seekTotal);
-		seekTotal.setId(101);
+		seekTotal.setId(201);
 		seekTotal.setMax(maxTotal * 100);
 		seekTotal.setProgress(defaultTotal * 100);
-		
-//		total.addTextChangedListener(valueTextWatcher);
 		
 		
 		Percentage = new DecimalFormat("#0.0 %");
@@ -76,10 +74,11 @@ public class Main extends Activity
 		defaultTipRate = 15;
 		
 		tipRate = (EditText) findViewById(R.id.tipRate);
+		tipRate.setId(102);
 		tipRate.setText(Percentage.format(defaultTipRate / 100));
 		
 		seekTipRate = (SeekBar) findViewById(R.id.seekTipRate);
-		seekTipRate.setId(102);
+		seekTipRate.setId(202);
 		seekTipRate.setMax((int) (maxTipRate * 10));
 		seekTipRate.setProgress((int) (defaultTipRate * 10));
 		
@@ -88,10 +87,11 @@ public class Main extends Activity
 		defaultTaxRate = 5;
 		
 		taxRate = (EditText) findViewById(R.id.taxRate);
+		taxRate.setId(103);
 		taxRate.setText(Percentage.format(defaultTaxRate / 100));
 		
 		seekTaxRate = (SeekBar) findViewById(R.id.seekTaxRate);
-		seekTaxRate.setId(103);
+		seekTaxRate.setId(203);
 		seekTaxRate.setMax((int) (maxTaxRate * 10));
 		seekTaxRate.setProgress((int) (defaultTaxRate * 10));
 		
@@ -103,10 +103,11 @@ public class Main extends Activity
 		defaultSplitBy = 0;
 		
 		splitBy = (EditText) findViewById(R.id.splitBy);
+		splitBy.setId(104);
 		splitBy.setText(Person.format(defaultSplitBy + 1));
 		
 		seekSplitBy = (SeekBar) findViewById(R.id.seekSplitBy);
-		seekSplitBy.setId(104);
+		seekSplitBy.setId(204);
 		seekSplitBy.setMax(maxSplitBy);
 		seekSplitBy.setProgress(defaultSplitBy);
 		
@@ -119,11 +120,72 @@ public class Main extends Activity
 		
 		updateTotal();
 		
+		total.setOnFocusChangeListener(onFocusChange_Listener);
+		tipRate.setOnFocusChangeListener(onFocusChange_Listener);
+		taxRate.setOnFocusChangeListener(onFocusChange_Listener);
+		splitBy.setOnFocusChangeListener(onFocusChange_Listener);
+		
 		seekTotal.setOnSeekBarChangeListener(onChanged_Listener);
 		seekTipRate.setOnSeekBarChangeListener(onChanged_Listener);
 		seekTaxRate.setOnSeekBarChangeListener(onChanged_Listener);
 		seekSplitBy.setOnSeekBarChangeListener(onChanged_Listener);
 	}
+	
+	private OnFocusChangeListener onFocusChange_Listener = new OnFocusChangeListener()
+	{
+		@Override
+		public void onFocusChange(View v, boolean hasFocus)
+		{
+			EditText txt = (EditText) v;
+			int id = txt.getId();
+			
+			String st;
+			float _fVal;
+			int _iVal;
+			
+			st = "";
+			st = txt.getText().toString();
+			st = st.replace("$", "");
+			st = st.replace("%", "");
+			st = st.replace("person", "");
+			st = st.replace(" ", "");
+			if (st == "")
+			{
+				st = "0";
+			}
+			
+			_fVal = Float.valueOf(st.trim()).floatValue();
+			
+			switch (id)
+			{
+				case 101:
+				{
+					seekTotal.setProgress((int) _fVal * 100);
+					
+					break;
+				}
+				case 102:
+				{
+					seekTipRate.setProgress((int) _fVal * 10);
+					
+					break;
+				}
+				case 103:
+				{
+					seekTaxRate.setProgress((int) _fVal * 10);
+					
+					break;
+				}
+				case 104:
+				{
+					_iVal = Integer.valueOf(st.trim()).intValue();
+					seekSplitBy.setProgress(_iVal - 1);
+					
+					break;
+				}
+			}
+		}
+	};
 	
 	private OnSeekBarChangeListener onChanged_Listener = new OnSeekBarChangeListener()
 	{
@@ -135,25 +197,25 @@ public class Main extends Activity
 			
 			switch (id)
 			{
-				case 101:
+				case 201:
 				{
 					total.setText(Currency.format(index / 100));
 					
 					break;
 				}
-				case 102:
+				case 202:
 				{
 					tipRate.setText(Percentage.format(index / 1000));
 					
 					break;
 				}
-				case 103:
+				case 203:
 				{
 					taxRate.setText(Percentage.format(index / 1000));
 					
 					break;
 				}
-				case 104:
+				case 204:
 				{
 					splitBy.setText(Person.format(index + 1));
 					
@@ -251,29 +313,4 @@ public class Main extends Activity
 		}
 		totalPerPerson.setText(Currency.format(_totalPerPerson));
 	}
-	
-	TextWatcher valueTextWatcher = new TextWatcher()
-	{
-		@Override
-		public void afterTextChanged(Editable s)
-		{
-			// TODO Auto-generated method stub
-			
-			String st;
-			float f;
-			
-			st = total.getText().toString();
-			st = st.replace("$", "");
-			f = Float.valueOf(st.trim()).floatValue();
-			seekTotal.setProgress((int) f * 100);
-		}
-		
-		public void beforeTextChanged(CharSequence s, int start, int count, int after)
-		{
-		}
-		
-		public void onTextChanged(CharSequence s, int start, int before, int count)
-		{
-		}
-	};
 }
